@@ -46,9 +46,9 @@ async def make_operation(gestion_in: GestionIn):
         print("Documento esta vigente")
 
     doc_in_db.expiration = gestion_in.expiration
+    
     update_docs(doc_in_db)
-    gestion_in_db = GestionInDB(**gestion_in.dict(),
-        expiration = doc_in_db.expiration)
+    gestion_in_db = GestionInDB(**gestion_in.dict(),expiration = doc_in_db.expiration)
     gestion_in_db = save_gestion(gestion_in_db)
 
     gestion_out = GestionOut(**gestion_in_db.dict())
