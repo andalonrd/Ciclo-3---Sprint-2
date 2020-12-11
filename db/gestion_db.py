@@ -16,8 +16,4 @@ def save_gestion(gestion_in_db: GestionInDB):
   generator["id"] = generator["id"] + 1
   gestion_in_db.id_gestion = generator["id"]
   database_gestion.append(gestion_in_db)
-<<<<<<< HEAD
   return gestion_in_db
-=======
-  return gestion_in_db
->>>>>>> 080ebe17fa91accb9705f921f249d5e67de5ccca
