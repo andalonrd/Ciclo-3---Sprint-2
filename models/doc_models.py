@@ -7,5 +7,4 @@ class DocIn(BaseModel):
 
 class DocOut(BaseModel):
     docName: str
-    field: str
     expiration: date
