@@ -23,7 +23,7 @@ async def auth_user(doc_in: DocIn):
         return {"El documento continúa vigente": False}
     return {"El documento continúa vigente": True}
 
-@api.get("/docs/balance/{docName}")
+@api.get("/docs/buscar/{docName}")
 async def get_document(docName: str):
     doc_in_db = get_docs(docName)
     if doc_in_db == None:
