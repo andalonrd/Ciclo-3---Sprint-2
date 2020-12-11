@@ -5,7 +5,7 @@ class GestionInDB(BaseModel):
   id_gestion: int = 0
   username: str
   date: datetime = datetime.now()
-  value: int
+  expiration: datetime
 
 database_gestion = []
 generator = {"id":0}
