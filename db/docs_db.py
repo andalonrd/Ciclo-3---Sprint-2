@@ -34,4 +34,8 @@ def get_docs(docName: str):
 
 def update_docs(doc_in_db: DocInDB):
     database_docs[doc_in_db.docName] = doc_in_db
+<<<<<<< HEAD
     return doc_in_db
+=======
+    return doc_in_db
+>>>>>>> 080ebe17fa91accb9705f921f249d5e67de5ccca
