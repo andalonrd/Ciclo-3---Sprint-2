@@ -7,6 +7,7 @@ from db.gestion_db import save_gestion
 from models.gestion_models import GestionIn, GestionOut
 
 from datetime import date
+from datetime import datetime
 from fastapi import FastAPI
 from fastapi import HTTPException
 
@@ -15,7 +16,7 @@ api = FastAPI()
 @api.post("/docs/verify/")
 async def auth_user(doc_in: DocIn):
     today = date.today()
-    doc_in_db = get_docs(doc_in.docName)
+    doc_in_db = get_docs(doc_in.doc_Name)
     if doc_in_db == None:
         raise HTTPException(status_code=404,
             detail="El documento no existe")
@@ -23,9 +24,9 @@ async def auth_user(doc_in: DocIn):
         return {"El documento continúa vigente": False}
     return {"El documento continúa vigente": True}
 
-@api.get("/docs/buscar/{docName}")
-async def get_document(docName: str):
-    doc_in_db = get_docs(docName)
+@api.get("/docs/buscar/{doc_Name}")
+async def get_document(doc_Name: str):
+    doc_in_db = get_docs(doc_Name)
     if doc_in_db == None:
         raise HTTPException(status_code=404,
                             detail="El documento no existe")
@@ -33,9 +34,12 @@ async def get_document(docName: str):
     return docs_out
 
 @api.put("/docs/update/")
-async def make_operation(gestion_in: GestionIn):
+async def make_operation(gestion_in: GestionIn): 
+    doc_in_db = 0;
     today = date.today()
-    doc_in_db = get_docs(gestion_in.docName)
+    
+    doc_in_db = get_docs(gestion_in.doc_Name)    
+    print(doc_in_db.expiration)
     if doc_in_db == None:
         raise HTTPException(status_code=404,
                             detail="Documento no existe")
@@ -48,8 +52,8 @@ async def make_operation(gestion_in: GestionIn):
     doc_in_db.expiration = gestion_in.expiration
     
     update_docs(doc_in_db)
-    gestion_in_db = GestionInDB(**gestion_in.dict(),expiration = doc_in_db.expiration)
+    gestion_in_db = GestionInDB(doc_Name = gestion_in.doc_Name, expiration = gestion_in.expiration, registro = datetime.now())
     gestion_in_db = save_gestion(gestion_in_db)
-
+    
     gestion_out = GestionOut(**gestion_in_db.dict())
     return gestion_out

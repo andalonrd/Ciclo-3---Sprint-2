@@ -5,7 +5,7 @@ from pydantic import BaseModel
 class GestionInDB(BaseModel):
     expiration: date
     id_gestion: int = 0
-    registro: datetime = datetime.now()
+    registro: datetime 
     doc_Name: str    
 
 database_gestion = []

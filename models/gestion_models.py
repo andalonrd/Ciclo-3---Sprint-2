@@ -3,11 +3,11 @@ from datetime import date
 from datetime import datetime
 
 class GestionIn(BaseModel):
-    docName: str
+    doc_Name: str
     expiration: date
 
 class GestionOut(BaseModel):
     id_gestion: int
-    registro: datetime
-    docName: str
+    registro: datetime 
+    doc_Name: str
     expiration: date
