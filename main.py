@@ -4,13 +4,13 @@ from models.doc_models import DocIn, DocOut
 
 from db.gestion_db import GestionInDB
 from db.gestion_db import save_gestion
-
+from models.gestion_models import GestionIn, GestionOut
 
 import datetime
 from fastapi import FastAPI
 from fastapi import HTTPException
-api = FastAPI()
 
+api = FastAPI()
 
 @api.get("/docs/balance/{docName}")
 async def get_document(docName: str):
@@ -23,9 +23,9 @@ async def get_document(docName: str):
 
 
 @api.put("/docs/update/")
-async def make_operation(transaction_in: TransactionIn):
+async def make_operation(gestion_in: GestionIn):
     today = date.today()
-    docs_in_db = get_docs(transaction_in.username)
+    docs_in_db = get_docs(gestion_in.docName)
     if docs_in_db == None:
         raise HTTPException(status_code=404,
                             detail="Documento no existe")
