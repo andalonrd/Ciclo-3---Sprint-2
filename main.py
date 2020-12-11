@@ -13,7 +13,7 @@ from fastapi import HTTPException
 api = FastAPI()
 
 @api.post("/user/auth/")
-async def auth_caduco(doc_in: DocIn):
+async def auth_user(doc_in: DocIn):
     today = date.today()
     docs_in_db = get_docs(docs_in.docName)
     if docs_in_db == None:
