@@ -1,10 +1,10 @@
 from db.docs_db import DocInDB
 from db.docs_db import get_docs, update_docs
-from models.doc_models import DocIn, DocOut
+from models.docs_models import GestionIn, GestionOut
 
 from db.gestion_db import GestionInDB
 from db.gestion_db import save_gestion
-from models.gestion_models import GestionIn, GestionOut
+from models.gestion_models import DocIn, DocOut
 
 import datetime
 from fastapi import FastAPI
@@ -35,12 +35,8 @@ async def make_operation(gestion_in: GestionIn):
     else:
         print("Documento esta vigente")
 
-docs_in_db.balance = docs_in_db.balance - gestion_in.value
-update_docs(docs_in_db)
+    gestion_in_db = GestionInDB(**gestion_in.dict())
+    gestion_in_db = save_gestion(gestion_in_db)
 
-gestion_in_db = GestionInDB(**gestion_in.dict(),
-    actual_balance = docs_in_db.balance)
-gestion_in_db = save_gestion(gestion_in_db)
-
-gestion_out = GestionOut(**gestion_in_db.dict())
-return gestion_out
+    gestion_out = GestionOut(**gestion_in_db.dict())
+    return gestion_out
