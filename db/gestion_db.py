@@ -7,8 +7,8 @@ class AccessInDB(BaseModel):
   date: datetime = datetime.now()
   value: int
 
- database_access = []
- generator = {"id":0}
+database_access = []
+generator = {"id":0}
   
   
 def save_access(access_in_db: AccessInDB):
