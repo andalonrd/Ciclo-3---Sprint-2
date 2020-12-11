@@ -1,11 +1,13 @@
 from datetime import datetime
 from pydantic import BaseModel
+from datetime import datetime
+from datetime import date
 
 class GestionInDB(BaseModel):
   id_gestion: int = 0
+  #date: datetime = datetime.now()
   doc_Name: str
-  date: datetime = datetime.now()
-  expiration: datetime
+  expiration: date
 
 database_gestion = []
 generator = {"id":0}
