@@ -1,10 +1,11 @@
 from pydantic import BaseModel
+from datetime import datetime
 
-class DocIn(BaseModel):
+class GestionIn(BaseModel):
     docName: str
-    field: str
-    author: str
 
-class DocOut(BaseModel):
+class GestionOut(BaseModel):
+    id_gestion: int
     docName: str
-    expiration: date
+    date: datetime
+    expiration: datetime
