@@ -8,6 +8,6 @@ class GestionIn(BaseModel):
 
 class GestionOut(BaseModel):
     id_gestion: int
-    #date: datetime
+    registro: datetime
     docName: str
     expiration: date
