@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class GestionInDB(BaseModel):
   id_gestion: int = 0
-  doc_name: str
+  doc_Name: str
   date: datetime = datetime.now()
   expiration: datetime
 
