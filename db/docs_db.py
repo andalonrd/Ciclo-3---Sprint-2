@@ -14,15 +14,15 @@ database_docs = {
     "documento_medico": DocInDB(**{ "docName": "documento_medico",
                                     "field": "medicina",
                                     "author": "Marisol",
-                                    "expiration": (2020-12-15)}),
+                                    "expiration": "2019-12-15"}),
     "documento_legal": DocInDB(**{ "docName": "documento_legal",
                                     "field": "legislación",
                                     "author": "Luis",
-                                    "expiration": (2020-12-20)}),
+                                    "expiration": "2020-12-20"}),
     "documento_bancario": DocInDB(**{ "docName": "documento_bancario",
                                     "field": "economia",
                                     "author": "Felipe",
-                                    "expiration": (2021-6-17)})                              
+                                    "expiration": "2021-6-17"})                              
 }
 
 def get_docs(docName: str):
