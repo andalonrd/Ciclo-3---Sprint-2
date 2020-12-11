@@ -1,18 +1,18 @@
 from datetime import datetime
 from pydantic import BaseModel
 
-class AccessInDB(BaseModel):
-  id_access: int = 0
+class GestionInDB(BaseModel):
+  id_gestion: int = 0
   username: str
   date: datetime = datetime.now()
   value: int
 
-database_access = []
+database_gestion = []
 generator = {"id":0}
   
   
-def save_access(access_in_db: AccessInDB):
+def save_gestion(gestion_in_db: GestionInDB):
   generator["id"] = generator["id"] + 1
-  access_in_db.id_access = generator["id"]
-  database_access.append(access_in_db)
-  return access_in_db
+  gestion_in_db.id_gestion = generator["id"]
+  database_gestion.append(gestion_in_db)
+  return gestion_in_db
