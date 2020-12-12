@@ -34,26 +34,25 @@ async def get_document(doc_Name: str):
     return docs_out
 
 @api.put("/docs/update/")
-async def make_operation(gestion_in: GestionIn): 
-    doc_in_db = 0;
+async def make_operation(gestion_in: GestionIn):
     today = date.today()
     
-    doc_in_db = get_docs(gestion_in.doc_Name)    
-    print(doc_in_db.expiration)
+    doc_in_db = get_docs(gestion_in.doc_Name)
     if doc_in_db == None:
         raise HTTPException(status_code=404,
                             detail="Documento no existe")
+                            
     if doc_in_db.expiration < today:
         raise HTTPException(status_code=400,
                             detail="Documento caducado")
     else:
         print("Documento esta vigente")
 
-    doc_in_db.expiration = gestion_in.expiration
-    
-    update_docs(doc_in_db)
-    gestion_in_db = GestionInDB(doc_Name = gestion_in.doc_Name, expiration = gestion_in.expiration, registro = datetime.now())
-    gestion_in_db = save_gestion(gestion_in_db)
-    
-    gestion_out = GestionOut(**gestion_in_db.dict())
+        doc_in_db.expiration = gestion_in.expiration
+        
+        update_docs(doc_in_db)
+        gestion_in_db = GestionInDB(doc_Name = gestion_in.doc_Name, expiration = gestion_in.expiration, registro = datetime.now())
+        gestion_in_db = save_gestion(gestion_in_db)
+        
+        gestion_out = GestionOut(**gestion_in_db.dict())
     return gestion_out
